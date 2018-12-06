@@ -23,10 +23,16 @@ services:
             - net
         ports:
             - "8000:80"
+            - "8001:443"
+        volumes:
+            - "./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
         environment:
             - "WORDPRESS_DB_HOST=db:3306"
             - "WORDPRESS_DB_USER=wordpress"
             - "WORDPRESS_DB_PASSWORD=wordpress"
+            - "upload_max_filesize=64M"
+            - "post_max_size=64M"
+            - "max_execution_time=300"
 
 networks:
     net:
